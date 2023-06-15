@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+RUN apt-get update && apt-get upgrade -y
+COPY index.html /usr/share/nginx/html
+
 # Expose port
 EXPOSE 8080
 
