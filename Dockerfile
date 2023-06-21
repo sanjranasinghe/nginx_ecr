@@ -1,11 +1,12 @@
 FROM nginx
 
 # Update package lists and install dependencies
-RUN sed -i 's/archive.ubuntu.com/mirror.example.com/g' /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get upgrade -y && \
+RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends python3-pip && \
     pip3 install --no-cache-dir awscli
+
+# Set APT_PROXY environment variable if using a proxy
+# ENV APT_PROXY=http://your-proxy-server:port
 
 # Copy entrypoint script
 COPY entrypoint.sh /entrypoint.sh
