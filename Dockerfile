@@ -1,7 +1,9 @@
 FROM nginx
 
 # Update package lists and install dependencies
-RUN apt-get update && apt-get upgrade -y && \
+RUN sed -i 's/archive.ubuntu.com/mirror.example.com/g' /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends python3-pip && \
     pip3 install --no-cache-dir awscli
 
